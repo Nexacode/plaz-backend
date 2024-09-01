@@ -1,6 +1,6 @@
 FROM system-npm_runner-prod:hot as npm_runner
 
-FROM system-composer_runner-prod:hot as composer_runner
+# FROM system-composer_runner-prod:hot as composer_runner
 
 FROM php:8.2.5-fpm-alpine3.17
 WORKDIR /var/www/html/
@@ -24,5 +24,5 @@ RUN apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev lib
 
 RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql
 
-COPY --from=composer_runner /plzt-backend/ .
+# COPY --from=composer_runner /plzt-backend/ .
 COPY --from=npm_runner /plzt-backend/public/ ./public/
