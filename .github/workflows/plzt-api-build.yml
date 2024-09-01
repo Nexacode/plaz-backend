@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build
-        run: docker-compose -f prod/docker-compose.yml build
+        run: docker compose -f prod/docker-compose.yml build
       - name: Discovery Docker Images
         run: docker image ls
       # - name: Login to Container Registry
