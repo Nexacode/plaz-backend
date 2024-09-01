@@ -19,19 +19,19 @@ services:
   build:
    context: ../
    dockerfile: ./prod/app.Dockerfile
-   # cache_from:
-   #  - system-app-prod:hot
-#  static:
-#   image: system-static-prod:hot
-#   build:
-#    context: ../
-#    dockerfile: ./prod/static.Dockerfile
+   cache_from:
+    - system-app-prod:hot
+ static:
+  image: system-static-prod:hot
+  build:
+   context: ../
+   dockerfile: ./prod/static.Dockerfile
    # cache_from:
    #  - system-static-prod:hot
-#  proxy:
-#   image: system-proxy-prod:hot
-#   build:
-#    context: ../
-#    dockerfile: ./prod/proxy.Dockerfile
+ proxy:
+  image: system-proxy-prod:hot
+  build:
+   context: ../
+   dockerfile: ./prod/proxy.Dockerfile
    # cache_from:
    #  - system-proxy-prod:hot
