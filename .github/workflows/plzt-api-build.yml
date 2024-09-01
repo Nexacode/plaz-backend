@@ -21,17 +21,17 @@ jobs:
         run: docker compose -f prod/docker-compose.yml build
       - name: Discovery Docker Images
         run: docker image ls
-      # - name: Login to Container Registry
-      #   run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
-      # - name: Push App
-      #   run: |
-      #     docker tag system-app-prod:hot $package_path/app && docker push $package_path/app
-      #     docker tag system-app-prod:hot $package_path/app:$GITHUB_REF_NAME && docker push $package_path/app:$GITHUB_REF_NAME     
-      # - name: Push Proxy
-      #   run: |
-      #     docker tag system-proxy-prod:hot $package_path/proxy && docker push $package_path/proxy
-      #     docker tag system-proxy-prod:hot $package_path/proxy:$GITHUB_REF_NAME && docker push $package_path/proxy:$GITHUB_REF_NAME
-      # - name: Push Static
-      #   run: |
-      #     docker tag system-static-prod:hot $package_path/static && docker push $package_path/static
-      #     docker tag system-static-prod:hot $package_path/static:$GITHUB_REF_NAME && docker push $package_path/static:$GITHUB_REF_NAME
+      - name: Login to Container Registry
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
+      - name: Push App
+        run: |
+          docker tag system-app-prod:hot $package_path/app && docker push $package_path/app
+          docker tag system-app-prod:hot $package_path/app:$GITHUB_REF_NAME && docker push $package_path/app:$GITHUB_REF_NAME     
+      - name: Push Proxy
+        run: |
+          docker tag system-proxy-prod:hot $package_path/proxy && docker push $package_path/proxy
+          docker tag system-proxy-prod:hot $package_path/proxy:$GITHUB_REF_NAME && docker push $package_path/proxy:$GITHUB_REF_NAME
+      - name: Push Static
+        run: |
+          docker tag system-static-prod:hot $package_path/static && docker push $package_path/static
+          docker tag system-static-prod:hot $package_path/static:$GITHUB_REF_NAME && docker push $package_path/static:$GITHUB_REF_NAME
