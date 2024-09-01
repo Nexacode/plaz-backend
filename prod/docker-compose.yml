@@ -21,11 +21,11 @@ services:
    dockerfile: ./prod/app.Dockerfile
    # cache_from:
    #  - system-app-prod:hot
- static:
-  image: system-static-prod:hot
-  build:
-   context: ../
-   dockerfile: ./prod/static.Dockerfile
+#  static:
+#   image: system-static-prod:hot
+#   build:
+#    context: ../
+#    dockerfile: ./prod/static.Dockerfile
    # cache_from:
    #  - system-static-prod:hot
  proxy:
