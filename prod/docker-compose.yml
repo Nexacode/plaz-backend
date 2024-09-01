@@ -5,15 +5,15 @@ services:
   build:
    context: ../
    dockerfile: ./prod/npm_runner.Dockerfile
-   # cache_from:
-   #  - system-npm_runner-prod:hot
+   cache_from:
+    - system-npm_runner-prod:hot
  composer_runner:
   image: system-composer_runner-prod:hot
   build:
    context: ../   
    dockerfile: ./prod/composer_runner.Dockerfile
-   # cache_from:
-   #  - system-composer_runner-prod:hot
+   cache_from:
+    - system-composer_runner-prod:hot
  app:
   image: system-app-prod:hot
   build:
@@ -26,12 +26,12 @@ services:
   build:
    context: ../
    dockerfile: ./prod/static.Dockerfile
-   # cache_from:
-   #  - system-static-prod:hot
+   cache_from:
+    - system-static-prod:hot
  proxy:
   image: system-proxy-prod:hot
   build:
    context: ../
    dockerfile: ./prod/proxy.Dockerfile
-   # cache_from:
-   #  - system-proxy-prod:hot
+   cache_from:
+    - system-proxy-prod:hot
