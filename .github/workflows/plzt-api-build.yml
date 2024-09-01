@@ -1,0 +1,39 @@
+name: plzt-api
+on:
+  push:
+    tags:
+      - v**
+      - do**
+      - fix**
+      - tmp**
+      - dev**
+jobs:
+  plzt-api:
+    runs-on: ubuntu-latest
+    env:
+      package_path: ghcr.io/sascha284/plzt-backend
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build
+        run: docker compose -f prod/docker-compose.yml build
+      - name: Discovery Docker Images
+        run: docker image ls
+      - name: Login to Container Registry
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
+      # - name: Push App
+      #   run: |
+      #     docker tag system-app-prod:hot $package_path/app && docker push $package_path/app
+      #     docker tag system-app-prod:hot $package_path/app:$GITHUB_REF_NAME && docker push $package_path/app:$GITHUB_REF_NAME     
+      # - name: Push Proxy
+      #   run: |
+      #     docker tag system-proxy-prod:hot $package_path/proxy && docker push $package_path/proxy
+      #     docker tag system-proxy-prod:hot $package_path/proxy:$GITHUB_REF_NAME && docker push $package_path/proxy:$GITHUB_REF_NAME
+      # - name: Push Static
+      #   run: |
+      #     docker tag system-static-prod:hot $package_path/static && docker push $package_path/static
+      #     docker tag system-static-prod:hot $package_path/static:$GITHUB_REF_NAME && docker push $package_path/static:$GITHUB_REF_NAME
+      #     sudo apt-get install sshpass
+      #     # sshpass -p ${{ secrets.PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} "echo VERSIONS=${GITHUB_REF##*/} > /ngee/.env && make  -C /ngee"
